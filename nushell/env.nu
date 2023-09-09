@@ -81,8 +81,12 @@ $env.NU_PLUGIN_DIRS = [
 $env.Term = xterm-256color
 $env.TERM = xterm-256color
 
+# I set XDG_CONFIG_HOME in the ENV vs .profile so that I can use an XDG-like layout for windows
 $env.XDG_CONFIG_HOME = $'($env.HOMEPATH)/.config/'
+
 $env.EDITOR = nvim
+
+$env.BAT_CONFIG_PATH = $'($env.XDG_CONFIG_HOME)/bat/bat.conf'
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 $env.Path = ($env.Path
