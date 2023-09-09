@@ -1,0 +1,4 @@
+*.lua
+
+lazy.nvim/
+lazy-lock.json
