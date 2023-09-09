@@ -48,6 +48,14 @@
 ;; Enables 24-bit RGB color if the terminal supports it
 (set vim.o.termguicolors true)
 
+;; Make the background transparent
+(fn set-bg [] (vim.cmd.highlight [:Normal :ctermbg=NONE :guibg=NONE]))
+(local transparent-bg
+(vim.api.nvim_create_augroup :TransparentBackground {:clear true}))
+(vim.api.nvim_create_autocmd :UIEnter {:callback set-bg
+                                       :group transparent-bg
+                                       :pattern "*"})
+
 ;; Display a quick highlight over yanked blocks
 (fn highlight-on-yank [] (vim.highlight.on_yank))
 (local highlight-group
