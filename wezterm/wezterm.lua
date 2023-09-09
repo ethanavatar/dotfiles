@@ -26,7 +26,7 @@ config.font = wezterm.font(
     }
 )
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.85
 config.enable_scroll_bar = true
 
 return config

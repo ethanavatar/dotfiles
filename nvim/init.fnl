@@ -94,6 +94,10 @@
              ;; Heuristic buffer options (Auto `shiftwidth`, `expandtab`, `tabstop`, etc)
              :tpope/vim-sleuth
 
+             {1 :altermo/ultimate-autopair.nvim
+             :event [:InsertEnter :CmdlineEnter]
+             :branch :v0.6}
+
              ;; File tree view
              :nvim-tree/nvim-tree.lua
 
@@ -149,12 +153,27 @@
 
 ;; [[ Configure Plugins ]]
 
+;; Enable auto-pairs
+(local autopairs (require :ultimate-autopair))
+(autopairs.setup {})
+
 ;; Enable nvim-tree
 (local nvim-tree (require :nvim-tree))
 (nvim-tree.setup)
 (vim.api.nvim_set_keymap :n :<C-n> ":NvimTreeToggle<CR>" {:desc "Toggle [N]vimTree"})
 
 ;; [[ Configure Treesitter ]]
+
+;; Define external parsers
+(local ts-parsers (require :nvim-treesitter.parsers))
+(local parser-config (ts-parsers.get_parser_configs))
+(tset parser-config :nu {})
+(tset parser-config.nu :install_info {:url "https://github.com/nushell/tree-sitter-nu"
+                                      :files [:src/parser.c]
+                                      :branch :main
+                                      :generate_requires_npm false
+                                      :requires_generate_from_grammar false})
+(tset parser-config.nu :filetype :nu)
 
 (local ts-install (require :nvim-treesitter.install))
 ;; Override treesitter's default C compiler
@@ -170,7 +189,10 @@
                    :ensure_installed [:fennel
                                       :rust
                                       :c_sharp
-                                      :python]
+                                      :python
+                                      
+                                      ;; External parsers defined above
+                                      :nu]
 
                    ;; Allow asyncronous installation
                    :sync_install false
@@ -183,6 +205,7 @@
                    :highlight {:enable true}
                    :indent {:enable true}})
 
+
 ;; [[ Configure Language Servers ]]
 
 ;; This function gets run every time the language server attaches to a buffer
@@ -192,7 +215,6 @@
     (when desc (set-forcibly! desc (.. "LS: " desc)))
     (vim.keymap.set :n keys func {:buffer bufnr : desc}))
 
-  (local telescope-builtin (require :telescope.builtin))
   (fn workspace-list-folders [] (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
   (fn format [_] (vim.lsp.buf.format))
 
