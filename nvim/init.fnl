@@ -67,9 +67,19 @@
 ;; Open a floating window containing the error or warning that is on the current line
 (vim.api.nvim_set_keymap :n :<leader>e "<cmd>lua vim.diagnostic.open_float()<CR>" {:desc "View [E]rror"})
 
-;; Disable netrw to use nvim-tree instead
-(set vim.g.loaded_netrw 1)
-(set vim.g.loaded_netrwPlugin 1)
+;; Disable built-in plugins 
+(local disabled-built-ins [:netrw :netrwPlugin :netrwSettings :netrwFileHandlers
+                           :gzip :zip :zipPlugin
+                           :tar :tarPlugin
+                           :getscript :getscriptPlugin
+                           :vimball :vimballPlugin
+                           :2html_plugin
+                           :logipat
+                           :rrhelper
+                           :spellfile_plugin
+                           :matchit])
+(each [_ plugin (pairs disabled-built-ins)]
+  (tset vim.g (.. :loaded_ plugin) true))
 
 ;; [[ Install plugins ]]
 
@@ -90,6 +100,8 @@
              :tpope/vim-fugitive
              ;; GitHub extension for fugitive
              :tpope/vim-rhubarb
+             ;; Git integrations
+             :lewis6991/gitsigns.nvim
 
              ;; Heuristic buffer options (Auto `shiftwidth`, `expandtab`, `tabstop`, etc)
              :tpope/vim-sleuth
@@ -100,6 +112,9 @@
 
              ;; File tree view
              :nvim-tree/nvim-tree.lua
+
+             ;; Highlight color identifiers
+             :norcalli/nvim-colorizer.lua
 
              ;; A "retro" solarized dark theme
              {1 :ellisonleao/gruvbox.nvim
@@ -121,25 +136,27 @@
              :dependencies [:nvim-treesitter/nvim-treesitter-textobjects]}
 
              ;; Language server plugins & configuration
-             {1 :neovim/nvim-lspconfig :dependencies [;; A package manager for installing language servers
-                                                      {1 :williamboman/mason.nvim :config true}
-                                                      ;; lspconfig extension for mason
-                                                      :williamboman/mason-lspconfig.nvim
+             {1 :neovim/nvim-lspconfig
+             :dependencies [;; A package manager for installing language servers
+                            {1 :williamboman/mason.nvim :config true}
+                            ;; lspconfig extension for mason
+                            :williamboman/mason-lspconfig.nvim
 
-                                                      ;; Show status messages for the currently running language server
-                                                      ;; NOTE: `:opts {}` is the same as calling the module's `setup` function
-                                                      {1 :j-hui/fidget.nvim :opts {} :tag :legacy}]}
+                            ;; Show status messages for the currently running language server
+                            ;; NOTE: `:opts {}` is the same as calling the module's `setup` function
+                            {1 :j-hui/fidget.nvim :opts {} :tag :legacy}]}
 
              ;; Autocomplete plugins & configuration
-             {1 :hrsh7th/nvim-cmp :dependencies [;; Snippet engine & its associated nvim-cmp source
-                                                 :L3MON4D3/LuaSnip
-                                                 :saadparwaiz1/cmp_luasnip
+             {1 :hrsh7th/nvim-cmp
+             :dependencies [;; Snippet engine & its associated nvim-cmp source
+                            :L3MON4D3/LuaSnip
+                            :saadparwaiz1/cmp_luasnip
 
-                                                 ;; nvim-cmp source for the active language server
-                                                 :hrsh7th/cmp-nvim-lsp
+                            ;; nvim-cmp source for the active language server
+                            :hrsh7th/cmp-nvim-lsp
 
-                                                 ;; A collection of nice snippets for various languages
-                                                 :rafamadriz/friendly-snippets]}
+                            ;; A collection of nice snippets for various languages
+                            :rafamadriz/friendly-snippets]}
 
      {1 :lukas-reineke/indent-blankline.nvim
      :opts {:char "┊" :show_trailing_blankline_indent false}}
@@ -156,6 +173,14 @@
 ;; Enable auto-pairs
 (local autopairs (require :ultimate-autopair))
 (autopairs.setup {})
+
+;; Enable Gitsigns
+(local gitsigns (require :gitsigns))
+(gitsigns.setup {})
+
+;; Enable colorizer
+(local colorizer (require :colorizer))
+(colorizer.setup)
 
 ;; Enable nvim-tree
 (local nvim-tree (require :nvim-tree))
