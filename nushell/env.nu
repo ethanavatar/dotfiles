@@ -16,6 +16,8 @@ if (is_windows) {
     $env.PATH = ($env.PATH | split row (char esep))
 }
 
+$env.NU_LIB_DIRS = [ ($nu.default-config-dir | path join 'scripts') ]
+
 $env.Term = xterm-256color
 $env.TERM = xterm-256color
 
