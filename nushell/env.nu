@@ -16,8 +16,6 @@ if (is_windows) {
     $env.PATH = ($env.PATH | split row (char esep))
 }
 
-$env.NU_LIB_DIRS = [ ($nu.default-config-dir | path join 'scripts') ]
-
 $env.Term = xterm-256color
 $env.TERM = xterm-256color
 
@@ -32,3 +30,9 @@ $env.VISUAL = nvim
 
 $env.BAT_CONFIG_PATH = $'($env.XDG_CONFIG_HOME)/bat/bat.conf'
 $env.STARSHIP_CONFIG = $'($env.XDG_CONFIG_HOME)/starship/starship.toml'
+
+# Custom command scripts
+source '~/.config/nushell/scripts/git-gitignore.nu'
+source '~/.config/nushell/scripts/git-ignore.nu'
+source '~/.config/nushell/scripts/git-restage.nu'
+

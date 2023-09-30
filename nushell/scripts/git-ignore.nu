@@ -1,5 +1,7 @@
+use '~/.config/nushell/scripts/open-ignore.nu' 'open ignore'
+
 # Add or remove (-r) a pattern from the current directory's .gitignore
-def "git ignore" [
+export def "git ignore" [
     --remove (-r) # If enabled, remove the given pattern from the list of ignored patterns
     pattern?: string # The pattern to ignore
 ] {
@@ -12,7 +14,7 @@ def "git ignore" [
             return
         }
 
-        return (open $path | lines | parse '{Pattern}')
+        return (open ignore $path) 
     }
 
     if $remove {
@@ -23,13 +25,13 @@ def "git ignore" [
             | into string
             | save $path --force
         print $'Removed `($pattern)` from `($path)`'
-        return (open $path | lines | parse '{Pattern}')
+        return (open ignore $path) 
     }
 
     if not $exists {
         $pattern | save $path
         print $'Created a new gitignore at `($path)`'
-        return (open $path | lines | parse '{Pattern}')
+        return (open ignore $path) 
     }
 
     mut $content = (char newline) + $pattern
@@ -40,6 +42,6 @@ def "git ignore" [
 
     $content | save $path --append
     print $'Added `($pattern)` to `($path)`'
-    return (open $path | lines | parse '{Pattern}')
+    return (open ignore $path) 
 }
 
