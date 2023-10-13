@@ -1,5 +1,7 @@
 ;; [[ Vanilla Neovim Configuration ]]
 
+(set vim.opt.shell :nu)
+
 ;; <space> as the global leader key
 (set vim.g.mapleader " ")
 (set vim.g.maplocalleader " ")
@@ -53,8 +55,7 @@
 (local transparent-bg
 (vim.api.nvim_create_augroup :TransparentBackground {:clear true}))
 (vim.api.nvim_create_autocmd :UIEnter {:callback set-bg
-                                       :group transparent-bg
-                                       :pattern "*"})
+                                       :group transparent-bg})
 
 ;; Display a quick highlight over yanked blocks
 (fn highlight-on-yank [] (vim.highlight.on_yank))
@@ -166,7 +167,9 @@
      :event :InsertEnter
      :config (fn []
                (local copilot (require :copilot))
-               (copilot.setup {}))} ])
+               (local options {})
+               (tset options :suggestion { :auto_trigger true })
+               (copilot.setup options))} ])
 
 ;; [[ Configure Plugins ]]
 
