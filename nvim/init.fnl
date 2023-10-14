@@ -50,8 +50,13 @@
 ;; Enables 24-bit RGB color if the terminal supports it
 (set vim.o.termguicolors true)
 
+(vim.diagnostic.config {:float {:border :rounded :focusable true :header false}
+                        :virtual_text false})	
+
 ;; Make the background transparent
-(fn set-bg [] (vim.cmd.highlight [:Normal :ctermbg=NONE :guibg=NONE]))
+(fn set-bg []
+  (vim.cmd.highlight [:Normal :ctermbg=NONE :guibg=NONE])
+  (vim.cmd.highlight [:Pmenu :ctermbg=NONE :guibg=NONE]))
 (local transparent-bg
 (vim.api.nvim_create_augroup :TransparentBackground {:clear true}))
 (vim.api.nvim_create_autocmd :UIEnter {:callback set-bg
@@ -314,7 +319,10 @@
 
 ;; Autotranslated from Lua because I got lazy
 ;; This is a mess that can most definitely be cleaned
-(cmp.setup {:mapping (cmp.mapping.preset.insert {
+(cmp.setup {
+:window {:completion (cmp.config.window.bordered)
+         :documentation (cmp.config.window.bordered)}
+:mapping (cmp.mapping.preset.insert {
   :<C-Space> (cmp.mapping.complete {})
   :<C-d> (cmp.mapping.scroll_docs (- 4))
   :<C-f> (cmp.mapping.scroll_docs 4)
