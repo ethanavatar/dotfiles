@@ -1,4 +1,8 @@
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.buf.inlay_hint(bufnr, true)
+    end
+
     local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
@@ -25,21 +29,21 @@ return {
     'neovim/nvim-lspconfig',
     lazy = false,
     dependencies = {
-        { 'williamboman/mason.nvim',           opts = {} },
+        { 'williamboman/mason.nvim', opts = {} },
         { 'williamboman/mason-lspconfig.nvim', opts = {} },
-        { 'j-hui/fidget.nvim',                 tag = 'legacy', opts = {} },
-        { "folke/neodev.nvim",                 opts = {} },
+        { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+        { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
-        local lspconfig = require 'lspconfig'
-        local mason_lspconfig = require 'mason-lspconfig'
-        mason_lspconfig.setup_handlers {
+        local lspconfig = require('lspconfig')
+        local mason_lspconfig = require('mason-lspconfig')
+        mason_lspconfig.setup_handlers({
             function(server_name)
-                lspconfig[server_name].setup {
+                lspconfig[server_name].setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
-                }
+                })
             end,
-        }
-    end
+        })
+    end,
 }

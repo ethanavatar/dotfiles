@@ -1,4 +1,4 @@
-local wezterm = require 'wezterm'
+local wezterm = require('wezterm')
 local config = {}
 
 if wezterm.config_builder then
@@ -12,20 +12,20 @@ local nushell_config_home = xdg_config_home .. '/nushell'
 config.default_prog = {
     'nu',
     '--login',
-    '--config', nushell_config_home .. '/config.nu',
-    '--env-config', nushell_config_home .. '/env.nu',
+    '--config',
+    nushell_config_home .. '/config.nu',
+    '--env-config',
+    nushell_config_home .. '/env.nu',
 }
 config.default_cwd = home
 
 config.color_scheme = 'Gruvbox Dark (Gogh)'
 
-local font = wezterm.font(
-    { -- https://tosche.net/fonts/comic-code
-        family = 'Comic Code Ligatures',
-        weight = 'DemiBold',
-        italic = true,
-    }
-)
+local font = wezterm.font({ -- https://tosche.net/fonts/comic-code
+    family = 'Comic Code Ligatures',
+    weight = 'DemiBold',
+    italic = true,
+})
 
 config.font = font
 config.font_rules = {

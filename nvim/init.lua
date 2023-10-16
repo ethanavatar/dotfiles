@@ -1,1 +1,1 @@
-require("ee")
+require('ee')

@@ -5,16 +5,16 @@ return {
     },
     build = ':TSUpdate',
     config = function()
-        local install = require("nvim-treesitter.install")
+        local install = require('nvim-treesitter.install')
         install.prefer_git = true
-        install.compilers = { "zig", "clang" }
+        install.compilers = { 'zig', 'clang' }
 
-        local configs = require("nvim-treesitter.configs")
+        local configs = require('nvim-treesitter.configs')
         configs.setup({
             sync_install = false,
             auto_install = true,
             highlight = { enable = true },
             indent = { enable = true },
         })
-    end
+    end,
 }
