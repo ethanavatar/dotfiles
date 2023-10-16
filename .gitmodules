@@ -1,0 +1,3 @@
+[submodule "nushell/share/nu_scripts"]
+	path = nushell/share/nu_scripts
+	url = https://github.com/nushell/nu_scripts

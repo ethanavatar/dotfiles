@@ -1,6 +1,8 @@
 
-use ~/.config/nushell/completions/git.nu *
-use ~/.config/nushell/completions/cargo.nu *
+use ~/.config/nushell/share/nu_scripts/custom-completions/git/git-completions.nu *
+use ~/.config/nushell/share/nu_scripts/custom-completions/cargo/cargo-completions.nu *
+use ~/.config/nushell/share/nu_scripts/custom-completions/winget/winget-completions.nu *
+use ~/.config/nushell/share/nu_scripts/custom-completions/npm/npm-completions.nu *
 
 source ~/.config/nushell/aliases.nu
 
@@ -41,3 +43,5 @@ export-env { load-env {
         )
     }
 }}
+
+source ~/.config/zoxide/zoxide.nu
