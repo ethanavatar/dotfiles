@@ -18,13 +18,30 @@ config.default_prog = {
 config.default_cwd = home
 
 config.color_scheme = 'Gruvbox Dark (Gogh)'
-config.font = wezterm.font(
+
+local font = wezterm.font(
     { -- https://tosche.net/fonts/comic-code
         family = 'Comic Code Ligatures',
         weight = 'DemiBold',
         italic = true,
     }
 )
+
+config.font = font
+config.font_rules = {
+    {
+        intensity = 'Bold',
+        font = font,
+    },
+    {
+        intensity = 'Half',
+        font = font,
+    },
+    {
+        intensity = 'Normal',
+        font = font,
+    },
+}
 
 config.window_background_opacity = 0.85
 config.enable_scroll_bar = true
