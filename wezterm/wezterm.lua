@@ -29,18 +29,9 @@ local font = wezterm.font({ -- https://tosche.net/fonts/comic-code
 
 config.font = font
 config.font_rules = {
-    {
-        intensity = 'Bold',
-        font = font,
-    },
-    {
-        intensity = 'Half',
-        font = font,
-    },
-    {
-        intensity = 'Normal',
-        font = font,
-    },
+    { intensity = 'Bold', font = font },
+    { intensity = 'Half', font = font },
+    { intensity = 'Normal', font = font },
 }
 
 config.window_background_opacity = 0.85

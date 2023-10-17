@@ -1,5 +1,5 @@
 vim.opt.shell = 'nu'
-
+vim.opt.shellslash = true
 vim.o.termguicolors = true
 
 vim.wo.number = true
