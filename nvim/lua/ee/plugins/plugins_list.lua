@@ -16,6 +16,8 @@ add('treeview')
 add('lualine')
 add('indent-blankline')
 
+add('startuptime')
+
 add('treesitter')
 
 add('lsp')
