@@ -20,29 +20,25 @@ end
 
 local transparent_background =
     vim.api.nvim_create_augroup('TransparentBackground', {})
-    vim.api.nvim_create_autocmd('UIEnter', {
+vim.api.nvim_create_autocmd('UIEnter', {
     callback = function()
         background_transparent()
     end,
     group = transparent_background,
 })
 
-vim.api.nvim_create_user_command(
-    'Background',
-    function(opts)
-        toggle_background(opts.args)
+vim.api.nvim_create_user_command('Background', function(opts)
+    toggle_background(opts.args)
+end, {
+    nargs = 1,
+    complete = function(_, _, _)
+        return { 'transparent', 'opaque' }
     end,
-    {
-        nargs = 1,
-        complete = function(_, _, _)
-            return { 'transparent', 'opaque' }
-        end
-    }
-)
+})
 
 local highlight_group =
     vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-    vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank()
     end,
