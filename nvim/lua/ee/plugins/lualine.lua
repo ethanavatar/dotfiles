@@ -5,6 +5,7 @@ local colors = {
     green = '#b8bb26',
     blue = '#458588',
     red = '#cc241d',
+    aqua = '#689d6a',
 }
 
 local conditions = {
@@ -59,7 +60,7 @@ local function layout(config)
         diagnostics_color = {
             color_error = { fg = colors.red },
             color_warn = { fg = colors.yellow },
-            color_info = { fg = colors.cyan },
+            color_info = { fg = colors.aqua },
         },
     })
 
@@ -128,7 +129,6 @@ return {
         }
 
         layout(config)
-
         lualine.setup(config)
     end,
 }
