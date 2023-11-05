@@ -95,40 +95,37 @@ local function layout(config)
     ins_right({ 'location' })
 end
 
+local config = {
+    options = {
+        component_separators = '',
+        section_separators = '',
+        theme = {
+            normal = { c = { fg = colors.fg, bg = colors.bg } },
+            inactive = { c = { fg = colors.fg, bg = colors.bg } },
+        },
+    },
+    sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_y = {},
+        lualine_z = {},
+        lualine_c = {},
+        lualine_x = {},
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_y = {},
+        lualine_z = {},
+        lualine_c = {},
+        lualine_x = {},
+    },
+}
+layout(config)
+
 return {
     'nvim-lualine/lualine.nvim',
-    lazy = false,
+    event = 'UIEnter',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-        local lualine = require('lualine')
-        local config = {
-            options = {
-                component_separators = '',
-                section_separators = '',
-                theme = {
-                    normal = { c = { fg = colors.fg, bg = colors.bg } },
-                    inactive = { c = { fg = colors.fg, bg = colors.bg } },
-                },
-            },
-            sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_y = {},
-                lualine_z = {},
-                lualine_c = {},
-                lualine_x = {},
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_y = {},
-                lualine_z = {},
-                lualine_c = {},
-                lualine_x = {},
-            },
-        }
-
-        layout(config)
-        lualine.setup(config)
-    end,
+    opts = config,
 }

@@ -14,3 +14,10 @@ vim.api.nvim_set_keymap(
     ':Format<CR>',
     { desc = '[F]ormat current buffer with LSP' }
 )
+
+vim.api.nvim_set_keymap(
+    'n',
+    '<C-n>',
+    ':NvimTreeToggle<CR>',
+    { desc = 'Toggle [N]vimTree' }
+)

@@ -27,7 +27,7 @@ local disabled_plugins = require('ee.plugins.disabled_plugins')
 
 require('lazy').setup({
     spec = plugins_spec,
-    defaults = { lazy = false },
+    defaults = { lazy = true },
     lockfile = vim.fn.stdpath('config') .. '/lazy-lock.json',
     install = {
         missing = true,

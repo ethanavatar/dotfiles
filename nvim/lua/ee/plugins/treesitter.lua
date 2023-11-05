@@ -4,6 +4,7 @@ return {
         'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+    event = 'BufReadPre',
     config = function()
         local install = require('nvim-treesitter.install')
         install.prefer_git = true

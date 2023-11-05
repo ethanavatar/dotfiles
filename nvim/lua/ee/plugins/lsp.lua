@@ -27,7 +27,8 @@ end
 
 return {
     'neovim/nvim-lspconfig',
-    lazy = false,
+    lazy = true,
+    event = 'BufReadPre',
     dependencies = {
         { 'williamboman/mason.nvim', opts = {} },
         { 'williamboman/mason-lspconfig.nvim', opts = {} },
@@ -39,6 +40,7 @@ return {
         local mason_lspconfig = require('mason-lspconfig')
         mason_lspconfig.setup_handlers({
             function(server_name)
+                local capabilities = vim.lsp.protocol.make_client_capabilities()
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
                     on_attach = on_attach,

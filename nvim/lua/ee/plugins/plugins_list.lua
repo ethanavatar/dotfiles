@@ -1,22 +1,18 @@
 local plugins = {}
 
-function add(name)
+local function add(name)
     local plugin = require('ee.plugins.' .. name)
     table.insert(plugins, plugin)
 end
 
 add('theme')
 
-add('fugitive')
-add('rhubarb')
-add('gitsigns')
+add('gitstuff')
 add('sleuth')
 add('autopairs')
 add('treeview')
 add('lualine')
 add('indent-blankline')
-
-add('startuptime')
 
 add('treesitter')
 
