@@ -1,14 +1,16 @@
-function background_transparent()
+local function background_transparent()
     vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
     vim.cmd('highlight Pmenu ctermbg=NONE guibg=NONE')
+    vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
 end
 
-function background_opaque()
+local function background_opaque()
     vim.cmd('highlight Normal ctermbg=NONE guibg=#282828')
     vim.cmd('highlight Pmenu ctermbg=NONE guibg=#282828')
+    vim.cmd('highlight SignColumn ctermbg=NONE guibg=#282828')
 end
 
-function toggle_background(mode)
+local function toggle_background(mode)
     if mode == 'transparent' then
         background_transparent()
     elseif mode == 'opaque' then

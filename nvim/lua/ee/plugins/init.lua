@@ -36,7 +36,7 @@ require('lazy').setup({
     checker = { enabled = false, notify = false },
     change_detection = { enabled = false, notify = false },
     diff = {
-        cmd = 'terminal_git',
+        cmd = 'git',
     },
     performance = {
         cache = {

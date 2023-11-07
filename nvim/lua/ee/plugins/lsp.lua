@@ -25,9 +25,10 @@ local on_attach = function(client, bufnr)
     end, { desc = 'Format current buffer with LSP' })
 end
 
+local servers = {}
+
 return {
     'neovim/nvim-lspconfig',
-    lazy = true,
     event = 'BufReadPre',
     dependencies = {
         { 'williamboman/mason.nvim', opts = {} },
@@ -44,6 +45,8 @@ return {
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
+                    settings = servers[server_name] or {},
+                    filetypes = (servers[server_name] or {}).filetypes,
                 })
             end,
         })
