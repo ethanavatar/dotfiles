@@ -34,7 +34,8 @@ return {
         { 'williamboman/mason.nvim', opts = {} },
         { 'williamboman/mason-lspconfig.nvim', opts = {} },
         { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
-        { 'folke/neodev.nvim', opts = {} },
+        { 'zeioth/garbage-day.nvim', event = 'VeryLazy', opts = {} },
+        { 'folke/neodev.nvim', ft = 'lua', opts = {} },
     },
     config = function()
         local lspconfig = require('lspconfig')
@@ -42,11 +43,15 @@ return {
         mason_lspconfig.setup_handlers({
             function(server_name)
                 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+                local server_settings = servers[server_name] or {}
+                local file_types = (server_settings or {}).filetypes
+
                 lspconfig[server_name].setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
-                    settings = servers[server_name] or {},
-                    filetypes = (servers[server_name] or {}).filetypes,
+                    settings = server_settings,
+                    filetypes = file_types,
                 })
             end,
         })

@@ -16,6 +16,9 @@ add('indent-blankline')
 
 add('treesitter')
 
+add('languages.java')
+add('languages.rust')
+
 add('lsp')
 add('cmp')
 add('copilot')
