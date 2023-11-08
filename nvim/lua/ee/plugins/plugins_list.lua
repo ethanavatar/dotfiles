@@ -13,6 +13,7 @@ add('autopairs')
 add('treeview')
 add('lualine')
 add('indent-blankline')
+add('whichkey')
 
 add('treesitter')
 
