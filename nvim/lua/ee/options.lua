@@ -34,7 +34,3 @@ vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 
 vim.o.completeopt = 'menuone,noselect'
-
-vim.diagnostic.config({
-    virtual_text = true,
-})

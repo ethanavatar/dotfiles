@@ -14,6 +14,7 @@ add('treeview')
 add('lualine')
 add('indent-blankline')
 add('whichkey')
+--add('harpoon')
 
 add('treesitter')
 

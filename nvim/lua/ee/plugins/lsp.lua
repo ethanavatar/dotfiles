@@ -14,14 +14,14 @@ local on_attach = function(_, bufnr)
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    nmap('<leader>s', vim.lsp.buf.signature_help, 'Signature Documentation')
 end
 
 local servers = {}
 
 return {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
         { 'williamboman/mason.nvim', opts = {} },
         { 'williamboman/mason-lspconfig.nvim', opts = {} },
@@ -32,6 +32,7 @@ return {
             opts = {},
         },
         { 'folke/neodev.nvim', ft = 'lua', opts = {} },
+        { 'hrsh7th/cmp-nvim-lsp', opts = {} },
     },
     config = function()
         local lspconfig = require('lspconfig')
