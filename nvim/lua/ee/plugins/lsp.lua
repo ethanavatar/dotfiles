@@ -33,8 +33,21 @@ return {
         },
         { 'folke/neodev.nvim', ft = 'lua', opts = {} },
         { 'hrsh7th/cmp-nvim-lsp', opts = {} },
+        { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', opts = {} },
     },
     config = function()
+        local lsp = require('lsp-zero')
+        lsp.configure('gdscript', {
+            force_setup = true, -- because the LSP is global. Read more on lsp-zero docs about this.
+            single_file_support = false,
+            cmd = { 'ncat', '127.0.0.1', '6008' }, -- the important trick for Windows!
+            root_dir = require('lspconfig.util').root_pattern(
+                'project.godot',
+                '.git'
+            ),
+            filetypes = { 'gd', 'gdscript', 'gdscript3' },
+        })
+
         local lspconfig = require('lspconfig')
         local mason_lspconfig = require('mason-lspconfig')
         mason_lspconfig.setup_handlers({
