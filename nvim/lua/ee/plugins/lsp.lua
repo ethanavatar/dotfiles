@@ -26,11 +26,6 @@ return {
         { 'williamboman/mason.nvim', opts = {} },
         { 'williamboman/mason-lspconfig.nvim', opts = {} },
         { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
-        {
-            'zeioth/garbage-day.nvim',
-            excluded_lsp_clients = { 'copilot' },
-            opts = {},
-        },
         { 'folke/neodev.nvim', ft = 'lua', opts = {} },
         { 'hrsh7th/cmp-nvim-lsp', opts = {} },
     },
