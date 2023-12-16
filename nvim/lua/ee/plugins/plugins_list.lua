@@ -18,8 +18,8 @@ add('whichkey')
 
 add('treesitter')
 
-add('languages.java')
 add('languages.rust')
+add('languages.java')
 
 add('lsp')
 add('cmp')

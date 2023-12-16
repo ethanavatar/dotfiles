@@ -17,8 +17,6 @@ local on_attach = function(_, bufnr)
     nmap('<leader>s', vim.lsp.buf.signature_help, 'Signature Documentation')
 end
 
-local servers = {}
-
 return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -31,8 +29,9 @@ return {
         { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', opts = {} },
     },
     config = function()
-        local lsp = require('lsp-zero')
-        lsp.configure('gdscript', {
+        local lsp_zero = require('lsp-zero')
+
+        lsp_zero.configure('gdscript', {
             force_setup = true, -- because the LSP is global. Read more on lsp-zero docs about this.
             single_file_support = false,
             cmd = { 'ncat', '127.0.0.1', '6008' }, -- the important trick for Windows!
@@ -43,22 +42,14 @@ return {
             filetypes = { 'gd', 'gdscript', 'gdscript3' },
         })
 
-        local lspconfig = require('lspconfig')
+        lsp_zero.on_attach(on_attach)
+
         local mason_lspconfig = require('mason-lspconfig')
-        mason_lspconfig.setup_handlers({
-            function(server_name)
-                local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-                local server_settings = servers[server_name] or {}
-                local file_types = (server_settings or {}).filetypes
-
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = server_settings,
-                    filetypes = file_types,
-                })
-            end,
+        mason_lspconfig.setup({
+            handlers = {
+                lsp_zero.default_setup,
+                jdtls = function() end,
+            },
         })
     end,
 }
