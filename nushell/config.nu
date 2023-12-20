@@ -44,4 +44,3 @@ export-env { load-env {
     }
 }}
 
-source ~/.config/zoxide/zoxide.nu

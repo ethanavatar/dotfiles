@@ -19,11 +19,18 @@ if (is_windows) {
 $env.Term = xterm-256color
 $env.TERM = xterm-256color
 
+mut $HOME = ""
+if (is_windows)  {
+    $HOME = $env.HOMEPATH
+} else {
+    $HOME = $env.HOME
+}
+
 # I set XDG BaseDirs in the ENV vs .profile so that I can use an XDG-like layout on Windows too
-$env.XDG_CONFIG_HOME = $'($env.HOMEPATH)/.config/'
+$env.XDG_CONFIG_HOME = $'($HOME)/.config/'
 
 # TEMP: This was messing something up with nvim on Windows
-#$env.XDG_CACHE_HOME = $'($env.HOMEPATH)/.cache/'
+#$env.XDG_CACHE_HOME = $'($HOME)/.cache/'
 
 $env.EDITOR = nvim
 $env.VISUAL = nvim

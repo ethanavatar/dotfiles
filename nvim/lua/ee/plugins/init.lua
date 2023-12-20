@@ -16,7 +16,12 @@ if not vim.loop.fs_stat(lazy_path) then
     })
 end
 
+-- Windows ENV var
 local home = os.getenv('HOMEPATH')
+if home == nil then
+    -- Anything but Windows
+    home = os.getenv('HOME')
+end
 local cache_dir = home .. '/.cache/nvim/'
 
 vim.opt.rtp:prepend(cache_dir)
