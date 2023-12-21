@@ -9,3 +9,8 @@ github-copilot/
 environment.d
 git
 xfce4
+dconf/
+pulse/
+gtk-[34].0/
+Thunar/
+autostart/
