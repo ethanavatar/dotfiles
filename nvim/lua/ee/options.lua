@@ -1,4 +1,3 @@
-vim.opt.shell = 'nu'
 vim.opt.shellslash = true
 vim.o.termguicolors = true
 

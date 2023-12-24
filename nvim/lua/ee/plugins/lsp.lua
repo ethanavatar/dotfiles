@@ -11,10 +11,23 @@ local on_attach = function(_, bufnr)
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     nmap('<leader>f', vim.lsp.buf.format, '[F]ormat Buffer')
 
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    --nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    --nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>s', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+    local telescope = require('telescope.builtin')
+
+    nmap('gd', telescope.lsp_definitions, '[G]oto [D]efinition')
+    nmap('gr', telescope.lsp_references, '[G]oto [R]eferences')
+    nmap('gI', telescope.lsp_implementations, '[G]oto [I]mplementation')
+    nmap('<leader>D', telescope.lsp_type_definitions, 'Type [D]efinition')
+    nmap('<leader>ds', telescope.lsp_document_symbols, '[D]ocument [S]ymbols')
+    nmap(
+        '<leader>ws',
+        telescope.lsp_dynamic_workspace_symbols,
+        '[W]orkspace [S]ymbols'
+    )
 end
 
 return {
