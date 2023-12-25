@@ -9,11 +9,14 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
+config.hide_tab_bar_if_only_one_tab = true
+
 local home = ''
 if is_windows() then
     home = os.getenv('HOMEPATH')
 else
     home = os.getenv('HOME')
+    config.enable_tab_bar = false
 end
 local xdg_config_home = home .. '/.config'
 
