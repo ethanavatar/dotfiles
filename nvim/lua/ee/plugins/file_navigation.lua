@@ -2,7 +2,7 @@ local opts = {
     float = {
         padding = 6,
         win_options = {
-            winblend = 25, -- change the value here
+            --winblend = 25, -- change the value here
         },
     },
 }
