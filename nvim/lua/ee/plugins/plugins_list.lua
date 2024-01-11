@@ -7,14 +7,18 @@ end
 
 add('theme')
 
+add('zen')
+
 add('gitstuff')
 add('sleuth')
 add('autopairs')
-add('treeview')
 add('lualine')
 add('indent-blankline')
 add('whichkey')
---add('harpoon')
+add('harpoon')
+
+add('file_navigation')
+add('telescope')
 
 add('treesitter')
 

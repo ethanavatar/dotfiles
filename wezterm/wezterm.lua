@@ -53,7 +53,28 @@ else
     config.font = wezterm.font('JetBrains Mono')
 end
 
-config.window_background_opacity = 0.85
+local window_opacity = 0.85
+
+config.window_background_opacity = window_opacity
 config.enable_scroll_bar = true
+
+wezterm.on('toggle-opacity', function(window, pane)
+    local overrides = window:get_config_overrides() or {}
+    local opacity = overrides.window_background_opacity
+        or config.window_background_opacity
+
+    if opacity == 1.0 then
+        opacity = window_opacity
+    else
+        opacity = 1.0
+    end
+
+    window:set_config_overrides({ window_background_opacity = opacity })
+end)
+
+local emit = wezterm.action.EmitEvent
+config.keys = {
+    { key = 'b', mods = 'CTRL', action = emit('toggle-opacity') },
+}
 
 return config
