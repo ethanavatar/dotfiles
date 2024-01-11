@@ -37,4 +37,24 @@ config.font_rules = {
 config.window_background_opacity = 0.85
 config.enable_scroll_bar = true
 
+wezterm.on('toggle-opacity', function(window, pane)
+    local overrides = window:get_config_overrides() or {}
+    local opacity = overrides.window_background_opacity
+        or config.window_background_opacity
+    if opacity == 1.0 then
+        opacity = 0.85
+    else
+        opacity = 1.0
+    end
+    window:set_config_overrides({ window_background_opacity = opacity })
+end)
+
+config.keys = {
+    {
+        key = 'b',
+        mods = 'CTRL',
+        action = wezterm.action.EmitEvent('toggle-opacity'),
+    },
+}
+
 return config
