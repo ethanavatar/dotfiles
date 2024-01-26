@@ -43,3 +43,4 @@ source '~/.config/nushell/scripts/git-gitignore.nu'
 source '~/.config/nushell/scripts/git-ignore.nu'
 source '~/.config/nushell/scripts/git-restage.nu'
 
+zoxide init nushell | save -f ~/.cache/zoxide.nu

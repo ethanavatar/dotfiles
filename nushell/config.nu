@@ -44,3 +44,4 @@ export-env { load-env {
     }
 }}
 
+source ~/.cache/zoxide.nu
