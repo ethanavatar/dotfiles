@@ -1,3 +1,6 @@
 [submodule "nushell/share/nu_scripts"]
 	path = nushell/share/nu_scripts
 	url = https://github.com/nushell/nu_scripts
+[submodule "nixos"]
+	path = nixos
+	url = https://github.com/ethanavatar/my-nixos
