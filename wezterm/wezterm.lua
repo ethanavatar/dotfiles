@@ -24,13 +24,23 @@ local function find_font(file_name)
     return results
 end
 
+local function merge_tables(...)
+    local result = {}
+    for _, t in ipairs({ ... }) do
+        for k, v in pairs(t) do
+            result[k] = v
+        end
+    end
+    return result
+end
+
 ---- Config ----
 
 local wezterm = require('wezterm')
-local config = {}
+local generated_config = {}
 
 if wezterm.config_builder then
-    config = wezterm.config_builder()
+    generated_config = wezterm.config_builder()
 end
 
 local home = get_home_path()
@@ -48,7 +58,7 @@ end
 
 local default_window_opacity = 0.85
 
-config = {
+local config = {
     default_cwd = home,
     default_prog = {
         'nu',
@@ -81,6 +91,8 @@ config = {
     },
 }
 
+---- Keybindings ----
+
 wezterm.on('toggle-opacity', function(window, pane)
     local overrides = window:get_config_overrides() or {}
     local opacity = overrides.window_background_opacity
@@ -100,4 +112,6 @@ config.keys = {
     { key = 'b', mods = 'CTRL', action = emit('toggle-opacity') },
 }
 
-return config
+---- End Config ----
+
+return merge_tables(config, generated_config)
