@@ -9,17 +9,6 @@ local home = 'C:/Users/ethan'
 local xdg_config_home = home .. '/.config'
 
 local nushell_config_home = xdg_config_home .. '/nushell'
-config.default_prog = {
-    'nu',
-    '--login',
-    '--config',
-    nushell_config_home .. '/config.nu',
-    '--env-config',
-    nushell_config_home .. '/env.nu',
-}
-config.default_cwd = home
-
-config.color_scheme = 'Gruvbox Dark (Gogh)'
 
 local font = wezterm.font({ -- https://tosche.net/fonts/comic-code
     family = 'Comic Code Ligatures',
@@ -27,17 +16,35 @@ local font = wezterm.font({ -- https://tosche.net/fonts/comic-code
     italic = true,
 })
 
-config.font = font
-config.font_rules = {
-    { intensity = 'Bold', font = font },
-    { intensity = 'Half', font = font },
-    { intensity = 'Normal', font = font },
+local default_window_opacity = 0.85
+
+config = {
+    default_cwd = home,
+    default_prog = {
+        'nu',
+        '--login',
+        '--config',
+        nushell_config_home .. '/config.nu',
+        '--env-config',
+        nushell_config_home .. '/env.nu',
+    },
+    -- (OpenGL|Software|WebGpu) Right now, WebGpu seems to be the fastest
+    front_end = 'WebGpu',
+    -- Default: 10
+    animation_fps = 10,
+    audible_bell = 'Disabled',
+    adjust_window_size_when_changing_font_size = false,
+    window_background_opacity = default_window_opacity,
+    enable_scroll_bar = true,
+
+    color_scheme = 'Gruvbox Dark (Gogh)',
+    font = font,
+    font_rules = {
+        { intensity = 'Bold', font = font },
+        { intensity = 'Half', font = font },
+        { intensity = 'Normal', font = font },
+    },
 }
-
-local window_opacity = 0.85
-
-config.window_background_opacity = window_opacity
-config.enable_scroll_bar = true
 
 wezterm.on('toggle-opacity', function(window, pane)
     local overrides = window:get_config_overrides() or {}
