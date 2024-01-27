@@ -44,4 +44,4 @@ export-env { load-env {
     }
 }}
 
-source ~/.cache/zoxide.nu
+source ~/.config/nushell/scripts/zoxide-init.nu
