@@ -4,3 +4,6 @@
 [submodule "nixos"]
 	path = nixos
 	url = https://github.com/ethanavatar/my-nixos
+[submodule "lua_utils"]
+	path = lua_utils
+	url = https://github.com/ethanavatar/lua_utils
