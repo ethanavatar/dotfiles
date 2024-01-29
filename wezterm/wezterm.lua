@@ -77,8 +77,9 @@ local config = {
         nushell_config_home .. '/env.nu',
     },
     -- (OpenGL|Software|WebGpu) Right now, WebGpu seems to be the fastest
-    -- But it's only available on Windows
-    front_end = is_windows() and 'WebGpu' or 'OpenGL',
+    -- But it's only available on Windows and macOS
+    -- I'm using OpenGL because I have had issues with transparency one WebGpu
+    front_end = 'OpenGL',
     -- Default: 10
     animation_fps = 10,
     audible_bell = 'Disabled',
