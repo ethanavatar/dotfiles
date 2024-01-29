@@ -11,6 +11,7 @@ package.path = package.path
     .. get_home_path()
     .. '/.config/'
     .. 'lua_utils/target/release/utils.lua'
+
 local utils = require('utils')
 
 ---- Functions ----
@@ -76,7 +77,8 @@ local config = {
         nushell_config_home .. '/env.nu',
     },
     -- (OpenGL|Software|WebGpu) Right now, WebGpu seems to be the fastest
-    front_end = 'WebGpu',
+    -- But it's only available on Windows
+    front_end = is_windows() and 'WebGpu' or 'OpenGL',
     -- Default: 10
     animation_fps = 10,
     audible_bell = 'Disabled',
