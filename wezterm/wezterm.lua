@@ -9,7 +9,7 @@ end
 package.path = package.path
     .. ';'
     .. get_home_path()
-    .. '/.config/'
+    .. '/.config/wezterm/'
     .. 'lua_utils/target/release/utils.lua'
 local utils = require('utils')
 

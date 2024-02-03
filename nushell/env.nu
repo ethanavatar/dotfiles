@@ -42,6 +42,7 @@ $env.STARSHIP_CONFIG = $'($env.XDG_CONFIG_HOME)/starship/starship.toml'
 source '~/.config/nushell/scripts/git-gitignore.nu'
 source '~/.config/nushell/scripts/git-ignore.nu'
 source '~/.config/nushell/scripts/git-restage.nu'
+source '~/.config/nushell/scripts/git-submodule-remove.nu'
 
 # How Zoxide should be initialized
 # but its not really useable if I keep updating nushell to latest.
