@@ -22,7 +22,7 @@ if home == nil then
     -- Anything but Windows
     home = os.getenv('HOME')
 end
-local cache_dir = home .. '/.cache/nvim/'
+local cache_dir = home .. '/.cache/nvim'
 
 vim.opt.rtp:prepend(cache_dir)
 vim.opt.rtp:prepend(lazy_path)

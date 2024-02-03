@@ -16,6 +16,7 @@ if (is_windows) {
     $env.PATH = ($env.PATH | split row (char esep))
 }
 
+# Tell programs to use true color
 $env.Term = xterm-256color
 $env.TERM = xterm-256color
 
@@ -28,9 +29,20 @@ if (is_windows)  {
 
 # I set XDG BaseDirs in the ENV vs .profile so that I can use an XDG-like layout on Windows too
 $env.XDG_CONFIG_HOME = $'($HOME)/.config/'
+$env.XDG_CACHE_HOME = $'($HOME)/.cache/' # TEMP: This one causes nvim to fail on windows
+$env.XDG_DATA_HOME = $'($HOME)/.local/share/'
+$env.XDG_STATE_HOME = $'($HOME)/.local/state/'
+$env.XDG_RUNTIME_DIR = $'($HOME)/.local/run/'
 
-# TEMP: This was messing something up with nvim on Windows
-#$env.XDG_CACHE_HOME = $'($HOME)/.cache/'
+# Set XDG user directories
+$env.XDG_DESKTOP_DIR = $'($HOME)/Desktop'
+$env.XDG_DOCUMENTS_DIR = $'($HOME)/Documents'
+$env.XDG_DOWNLOAD_DIR = $'($HOME)/Downloads'
+$env.XDG_MUSIC_DIR = $'($HOME)/Music'
+$env.XDG_PICTURES_DIR = $'($HOME)/Pictures'
+$env.XDG_VIDEOS_DIR = $'($HOME)/Videos'
+#$env.XDG_PUBLICSHARE_DIR = $'($HOME)/Public'
+#$env.XDG_TEMPLATES_DIR = $'($HOME)/Templates'
 
 $env.EDITOR = nvim
 $env.VISUAL = nvim
