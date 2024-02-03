@@ -17,5 +17,17 @@ return {
             highlight = { enable = true },
             indent = { enable = true },
         })
+
+        local parsers = require('nvim-treesitter.parsers')
+        local parser_configs = parsers.get_parser_configs()
+
+        parser_configs.nu = {
+            install_info = {
+                url = 'https://github.com/nushell/tree-sitter-nu',
+                files = { 'src/parser.c' },
+                branch = 'main',
+            },
+            filetype = 'nu',
+        }
     end,
 }
