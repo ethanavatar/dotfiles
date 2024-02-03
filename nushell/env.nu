@@ -47,8 +47,8 @@ $env.XDG_VIDEOS_DIR = $'($HOME)/Videos'
 $env.EDITOR = nvim
 $env.VISUAL = nvim
 
-$env.BAT_CONFIG_PATH = $'($env.XDG_CONFIG_HOME)/bat/bat.conf'
-$env.STARSHIP_CONFIG = $'($env.XDG_CONFIG_HOME)/starship/starship.toml'
+$env.BAT_CONFIG_PATH = $'($env.XDG_CONFIG_HOME)/bat.conf'
+$env.STARSHIP_CONFIG = $'($env.XDG_CONFIG_HOME)/starship.toml'
 
 # Custom command scripts
 source '~/.config/nushell/scripts/git-gitignore.nu'
