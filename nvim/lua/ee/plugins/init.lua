@@ -23,6 +23,12 @@ if home == nil then
     home = os.getenv('HOME')
 end
 local cache_dir = home .. '/.cache/nvim'
+-- create cache dir if it doesn't exist
+if not vim.loop.fs_stat(cache_dir) then
+    vim.loop.fs_mkdir(cache_dir, 493, function()
+        -- 493 is decimal for 0755
+    end)
+end
 
 vim.opt.rtp:prepend(cache_dir)
 vim.opt.rtp:prepend(lazy_path)
