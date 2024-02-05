@@ -12,7 +12,7 @@ package.path = package.path
     .. '/.config/wezterm/'
     .. 'lua_utils/target/release/utils.lua'
 
-local utils = require('utils')
+--local utils = require('utils')
 
 ---- Functions ----
 
@@ -66,6 +66,11 @@ end
 
 local default_window_opacity = 0.85
 
+local renderer = 'WebGpu'
+if not is_windows() then
+    renderer = 'OpenGL'
+end
+
 local config = {
     default_cwd = home,
     default_prog = {
@@ -77,9 +82,8 @@ local config = {
         nushell_config_home .. '/env.nu',
     },
     -- (OpenGL|Software|WebGpu) Right now, WebGpu seems to be the fastest
-    -- But it's only available on Windows and macOS
-    -- I'm using OpenGL because I have had issues with transparency one WebGpu
-    front_end = 'OpenGL',
+    -- But it's only available on Windows and macOS by default
+    front_end = renderer,
     -- Default: 10
     animation_fps = 10,
     audible_bell = 'Disabled',
