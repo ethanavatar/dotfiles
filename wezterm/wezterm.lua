@@ -65,11 +65,7 @@ if is_windows() then
 end
 
 local default_window_opacity = 0.85
-
-local renderer = 'WebGpu'
-if not is_windows() then
-    renderer = 'OpenGL'
-end
+local renderer = 'OpenGL'
 
 local config = {
     default_cwd = home,
