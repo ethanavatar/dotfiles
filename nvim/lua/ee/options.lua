@@ -33,3 +33,10 @@ vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 
 vim.o.completeopt = 'menuone,noselect'
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Disable folds by default
+-- so the whole file doesnt fold automatically when opening
+vim.opt.foldenable = false

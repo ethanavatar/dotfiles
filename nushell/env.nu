@@ -56,8 +56,9 @@ source '~/.config/nushell/scripts/git-ignore.nu'
 source '~/.config/nushell/scripts/git-restage.nu'
 source '~/.config/nushell/scripts/git-submodule-remove.nu'
 source '~/.config/nushell/scripts/git-subfolder-checkout.nu'
-source '~/.config/nushell/scripts/nufetch.nu'
 source '~/.config/nushell/scripts/killall.nu'
+source '~/.config/nushell/scripts/ndk-env.nu'
+source '~/.config/nushell/scripts/nufetch.nu'
 
 # How Zoxide should be initialized
 # but its not really useable if I keep updating nushell to latest.
