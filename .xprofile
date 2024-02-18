@@ -1,0 +1,1 @@
+picom -b --config /home/ethane/.config/awesome/picom.conf
