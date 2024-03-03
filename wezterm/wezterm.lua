@@ -6,14 +6,6 @@ local function get_home_path()
     return is_windows() and os.getenv('HOMEPATH') or os.getenv('HOME')
 end
 
-package.path = package.path
-    .. ';'
-    .. get_home_path()
-    .. '/.config/wezterm/'
-    .. 'lua_utils/target/release/utils.lua'
-
---local utils = require('utils')
-
 ---- Functions ----
 
 local function find_font(file_name)
