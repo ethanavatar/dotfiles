@@ -10,3 +10,7 @@
 [submodule "nvim"]
 	path = nvim
 	url = https://github.com/ethanavatar/nvim-config
+[submodule "nvim-minimal"]
+	path = nvim-minimal
+	url = https://github.com/ethanavatar/nvim-config
+	branch = nvim-minimal
