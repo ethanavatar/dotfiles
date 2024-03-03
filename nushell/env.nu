@@ -60,6 +60,7 @@ source '~/.config/nushell/scripts/killall.nu'
 source '~/.config/nushell/scripts/ndk-env.nu'
 source '~/.config/nushell/scripts/mkv-remux.nu'
 source '~/.config/nushell/scripts/nufetch.nu'
+source '~/.config/nushell/scripts/install-config-assets.nu'
 
 # How Zoxide should be initialized
 # but its not really useable if I keep updating nushell to latest.
