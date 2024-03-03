@@ -7,3 +7,6 @@
 [submodule "wezterm/lua_utils"]
 	path = wezterm/lua_utils
 	url = https://github.com/ethanavatar/lua_utils
+[submodule "nvim"]
+	path = nvim
+	url = https://github.com/ethanavatar/nvim-config
