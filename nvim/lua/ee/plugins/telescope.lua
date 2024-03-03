@@ -23,10 +23,24 @@ return {
     tag = '0.1.5',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        {
-            'nvim-telescope/telescope-fzf-native.nvim',
-            build = fzf_build,
-            cond = fzf_build_cond,
+    },
+    opts = {
+        find_files = {
+            hidden = true,
+            find_command = {
+                'rg',
+                '--files',
+                '--color=never',
+                '--no-heading',
+                '--line-number',
+                '--column',
+                '--smart-case',
+                '--hidden',
+                '--glob',
+                '!{.git/*}',
+                '--path-separator',
+                '/',
+            },
         },
     },
 }

@@ -29,7 +29,7 @@ if (is_windows)  {
 
 # I set XDG BaseDirs in the ENV vs .profile so that I can use an XDG-like layout on Windows too
 $env.XDG_CONFIG_HOME = $'($HOME)/.config/'
-$env.XDG_CACHE_HOME = $'($HOME)/.cache/' # TEMP: This one causes nvim to fail on windows
+$env.XDG_CACHE_HOME = $'($HOME)/.cache/'
 $env.XDG_DATA_HOME = $'($HOME)/.local/share/'
 $env.XDG_STATE_HOME = $'($HOME)/.local/state/'
 $env.XDG_RUNTIME_DIR = $'($HOME)/.local/run/'
@@ -58,6 +58,7 @@ source '~/.config/nushell/scripts/git-submodule-remove.nu'
 source '~/.config/nushell/scripts/git-subfolder-checkout.nu'
 source '~/.config/nushell/scripts/killall.nu'
 source '~/.config/nushell/scripts/ndk-env.nu'
+source '~/.config/nushell/scripts/mkv-remux.nu'
 source '~/.config/nushell/scripts/nufetch.nu'
 
 # How Zoxide should be initialized
