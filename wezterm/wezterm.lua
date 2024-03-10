@@ -49,7 +49,9 @@ local nushell_config_home = xdg_config_home .. '/nushell'
 
 local font = wezterm.font('JetBrains Mono')
 if is_windows() then
-    font = wezterm.font({ -- https://tosche.net/fonts/comic-code
+    -- https://tosche.net/fonts/comic-code
+    -- Paid font, so I dont keep it in VCS
+    font = wezterm.font({ 
         family = 'Comic Code Ligatures',
         weight = 'DemiBold',
         italic = true,
@@ -57,7 +59,6 @@ if is_windows() then
 end
 
 local default_window_opacity = 0.85
-local renderer = 'OpenGL'
 
 local config = {
     default_cwd = home,
@@ -69,9 +70,8 @@ local config = {
         '--env-config',
         nushell_config_home .. '/env.nu',
     },
-    -- (OpenGL|Software|WebGpu) Right now, WebGpu seems to be the fastest
-    -- But it's only available on Windows and macOS by default
-    front_end = renderer,
+    -- (OpenGL|Software|WebGpu)
+    front_end = 'OpenGL',
     -- Default: 10
     animation_fps = 10,
     audible_bell = 'Disabled',
