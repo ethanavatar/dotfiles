@@ -16,3 +16,6 @@ Thunar/
 autostart/
 .android/*
 Users/*
+.gsd-keyboard.settings-ported
+evolution/*
+gnome-initial-setup-done

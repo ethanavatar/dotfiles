@@ -12,7 +12,7 @@ theme.wallpaper = themes_path .. 'zenburn/zenburn-background.png'
 -- }}}
 
 -- {{{ Styles
-theme.font = 'sans 8'
+theme.font = 'JetBrains Mono'
 
 -- {{{ Colors
 theme.fg_normal = '#DCDCCC'
@@ -26,7 +26,7 @@ theme.bg_systray = theme.bg_normal
 
 -- {{{ Borders
 theme.useless_gap = dpi(6)
-theme.border_width = dpi(2)
+theme.border_width = dpi(4)
 theme.border_normal = '#3F3F3F'
 theme.border_focus = '#90c182'
 theme.border_marked = '#CC9393'
