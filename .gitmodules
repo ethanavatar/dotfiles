@@ -4,9 +4,10 @@
 [submodule "nixos"]
 	path = nixos
 	url = https://github.com/ethanavatar/my-nixos
-[submodule "nvim"]
-	path = nvim
+[submodule "nvim-full"]
+	path = nvim-full
 	url = https://github.com/ethanavatar/nvim-config
+	branch = main
 [submodule "nvim-minimal"]
 	path = nvim-minimal
 	url = https://github.com/ethanavatar/nvim-config

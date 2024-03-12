@@ -22,10 +22,16 @@ export-env { load-env {
 
     PROMPT_COMMAND: {||
         (
+            "" | fill
+                --alignment l
+                --character "─"
+                --width ((term size).columns)
+                | print;
+
             starship prompt
                 --cmd-duration $env.CMD_DURATION_MS
                 $"--status=($env.LAST_EXIT_CODE)"
-                --terminal-width (term size).columns
+                --terminal-width (term size).columns;
         )
     }
 

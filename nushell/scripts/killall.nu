@@ -1,4 +1,16 @@
 
+def "fkill" [
+    $process: record<
+        pid: int,
+        name: string>
+] {
+    kill $process.pid -f
+    return {
+        name: $process.name,
+        pid: $process.pid
+    }
+}
+
 # kill all processes of the executable name
 export def "killall" [
     $exe_name: string
@@ -15,8 +27,7 @@ export def "killall" [
         return
     }
 
-    for $process in $processes {
-        print $"Killing process: ($process.pid) - ($process.name)"
-        kill $process.pid -f
+    $processes | par-each { |$p|
+        fkill $p
     }
 }
