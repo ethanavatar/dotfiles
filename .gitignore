@@ -19,3 +19,6 @@ Users/*
 .gsd-keyboard.settings-ported
 evolution/*
 gnome-initial-setup-done
+
+discord/*
+!discord/settings.json
