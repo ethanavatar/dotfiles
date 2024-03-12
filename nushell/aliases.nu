@@ -6,7 +6,7 @@ $env.NVIM_APPNAME = "nvim-full"
 export def "nvim full" [
     dir: path
 ] {
-    with-env { NVIM_APPNAME = "nvim-full" } {
+    with-env { NVIM_APPNAME: "nvim-full" } {
         nvim $dir
     }
 }
@@ -14,7 +14,7 @@ export def "nvim full" [
 export def "nvim minimal" [
     dir: path
 ] {
-    with-env { NVIM_APPNAME = "nvim-minimal" } {
+    with-env { NVIM_APPNAME: "nvim-minimal" } {
         nvim $dir
     }
 }
