@@ -22,7 +22,7 @@ $env.TERM = xterm-256color
 
 mut $HOME = ""
 if (is_windows)  {
-    $HOME = $env.HOMEPATH
+    $HOME = ($env.HOMEDRIVE | path join $env.HOMEPATH)
 } else {
     $HOME = $env.HOME
 }
