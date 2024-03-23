@@ -58,21 +58,54 @@ let addTitleBarPlugin (context: IConfigContext) =
     ()
 
 let setupContext (context: IConfigContext) =
+    let leader = KeyModifiers.LWin in
+    let leaderShift =   KeyModifiers.LWin ||| KeyModifiers.Shift in
+    let leaderCtrl =    KeyModifiers.LWin ||| KeyModifiers.Control in
+
+    let keys = context.Keybinds in
+    let workspaces = context.Workspaces in
+    let focused = context.Workspaces.FocusedWorkspace in
+
+
     context.Branch <- Branch.Unstable;
     context.ConsoleLogLevel <- LogLevel.Debug;
+
+    context.CanMinimizeWindows <- true;
 
     addGapPlugin(context);
     addBarPlugin(context);
     addFocusBorderPlugin(context);
     addTitleBarPlugin(context);
 
-    let actionMenu = context.AddActionMenu();
-    let leader = KeyModifiers.LWin;
+    // --- Keybindings ---
+    // Based on the layout of https://github.com/shiltemann/cheatsheets/blob/master/awesome-wm.md
 
-    let startTerminal = fun _ -> launch("wezterm.exe");
-    context.Keybinds.Subscribe(leader, Keys.Enter, startTerminal);
+    context.Keybinds.UnsubscribeAll();
 
+    // --- Window Manager ---
+    keys.Subscribe(leaderCtrl, Keys.R, context.Restart);
+    keys.Subscribe(leaderShift, Keys.Q, context.Quit);
+    // Mod4 + r - Already the run prompt in Windows
+    // Mod4 + x - No lua prompt in windows. Maybe C# REPL would be cool?
+    keys.Subscribe(leader, Keys.Enter, fun _ -> launch("wezterm.exe"));
+    // Mod4 + w - Open main menu
+
+    // --- Navigation ---
+    keys.Subscribe(leader, Keys.J, focused.FocusNextWindow);
+    keys.Subscribe(leader, Keys.K, focused.FocusPreviousWindow);
+    // Mod4 + u - Focus urgent client
+    keys.Subscribe(leader, Keys.Right, workspaces.SwitchToNextWorkspace);
+    keys.Subscribe(leader, Keys.Left, workspaces.SwitchToPreviousWorkspace);
+
+    // --- Clients ---
+    keys.Subscribe(leaderShift, Keys.C, focused.CloseFocusedWindow);
+
+    // --- Layout ---
+    keys.Subscribe(leaderShift, Keys.J, focused.SwapFocusAndNextWindow);
+    keys.Subscribe(leaderShift, Keys.K, focused.SwapFocusAndPreviousWindow);
+
+
+    context.WindowRouter.AddFilter(fun w -> not w.IsFullscreen);
     context.WorkspaceContainer.CreateWorkspaces("1", "2", "3", "4", "5");
-    context.CanMinimizeWindows <- true;
 
     ()
