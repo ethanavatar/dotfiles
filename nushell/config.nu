@@ -4,7 +4,7 @@ use ~/.config/nushell/share/nu_scripts/custom-completions/cargo/cargo-completion
 use ~/.config/nushell/share/nu_scripts/custom-completions/winget/winget-completions.nu *
 use ~/.config/nushell/share/nu_scripts/custom-completions/npm/npm-completions.nu *
 
-source ~/.config/nushell/aliases.nu
+# $env.NVIM_APPNAME = "nvim_rs"
 
 $env.config.show_banner = false
 

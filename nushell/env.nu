@@ -52,6 +52,7 @@ $env.STARSHIP_CONFIG = $'($env.XDG_CONFIG_HOME)/starship.toml'
 
 # Custom command scripts
 source '~/.config/nushell/scripts/git-gitignore.nu'
+source '~/.config/nushell/scripts/git-checkoutsw.nu'
 source '~/.config/nushell/scripts/git-ignore.nu'
 source '~/.config/nushell/scripts/git-restage.nu'
 source '~/.config/nushell/scripts/git-submodule-remove.nu'

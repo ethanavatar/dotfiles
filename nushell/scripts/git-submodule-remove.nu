@@ -9,13 +9,13 @@ export def "git submodule remove" [
         return 1
     }
 
-    let $module = $path_name | path parse
-    if $module.extension != "" {
-        print "fatal: $path_name is not a directory"
+    let $is_dir = $path_name | path type
+    if $is_dir != "dir" {
+        print $"fatal: ($path_name) is not a directory"
         return 1
     }
 
-    let $module_name = $module.stem
+    let $module_name = $path_name | path parse | $"($in.stem).($in.extension)"
 
     print $"+ git config -f .gitmodules --remove-section submodule.($module_name)"
     let $result = run-external "git" "config" "-f" .gitmodules "--remove-section" $"submodule.($module_name)"
