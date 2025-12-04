@@ -63,7 +63,3 @@ source '~/.config/nushell/scripts/mkv-remux.nu'
 source '~/.config/nushell/scripts/nufetch.nu'
 source '~/.config/nushell/scripts/install-config-assets.nu'
 
-# How Zoxide should be initialized
-# but its not really useable if I keep updating nushell to latest.
-# So I maintain my own version of zoxide.nu in ~/.config/nushell/scripts/zoxide.nu
-#zoxide init nushell | save -f ~/.cache/zoxide.nu
