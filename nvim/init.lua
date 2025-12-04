@@ -1,6 +1,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- TODO: Find path dynamically
+vim.opt.backupdir = vim.fn.stdpath('cache') .. '/nvim-backup/'
+vim.opt.backup = true
+
 vim.o.number = true
 vim.o.relativenumber = true
 
@@ -61,4 +65,6 @@ vim.keymap.set(
     { desc = 'Open parent directory (Oil.nvim)' }
 )
 
-require('typst-preview').setup()
+require('typst-preview').setup({
+    extra_args = { '--input=preview=true' },
+})

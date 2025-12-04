@@ -58,7 +58,10 @@ if is_windows() then
     })
 end
 
-local default_window_opacity = 0.85
+--local default_window_opacity = 0.85
+local default_window_opacity = 0.65
+
+local gpus = wezterm.gui.enumerate_gpus()
 
 local config = {
     default_cwd = home,
@@ -72,8 +75,13 @@ local config = {
     },
     -- (OpenGL|Software|WebGpu)
     front_end = 'OpenGL',
+    --front_end = 'WebGpu',
+    --webgpu_power_preference = "HighPerformance",
+    win32_system_backdrop = 'Disable',
+
     -- Default: 10
-    animation_fps = 10,
+    animation_fps = 120,
+
     audible_bell = 'Disabled',
     adjust_window_size_when_changing_font_size = false,
     window_background_opacity = default_window_opacity,
